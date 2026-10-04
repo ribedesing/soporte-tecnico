@@ -99,19 +99,10 @@ Abre `http://localhost:8000` e inicia sesión con alguna de las cuentas demo.
 - En producción, `APP_FORCE_HTTPS` y `APP_ENV=production` se definen en el **entorno de PHP / servidor**, no en el archivo `.env`.
 - `database/seed_demo.sql` es solo para una base nueva de demostración; no lo ejecutes sobre datos reales.
 
-## Mi aporte
-
-<!-- Completa esta sección con tus palabras: es lo que más leen los reclutadores. Ejemplos de qué contar: -->
-
-- **Contexto:** [para quién lo hiciste y qué problema resolvía].
-- **Mi rol:** [diseño, backend, frontend, base de datos, despliegue…].
-- **Retos técnicos:** [p. ej. flujo de servicio en campo, seguridad de sesiones, subida segura de archivos].
-- **Resultado:** [quién lo usa, qué mejoró].
-
 ## Licencia
 
 Todos los derechos reservados. El código es visible únicamente para evaluación; no se autoriza su uso, copia ni distribución sin permiso por escrito. Consulta [LICENSE](LICENSE).
 
 ## Contacto
 
-[TU NOMBRE] · [LinkedIn] · [correo]
+Ing. Paola Rivera · [[LinkedIn](https://www.linkedin.com/in/paola-rivera-0613493b1/)] · [ribe.desing@gmail.com] · [paolariveratm1985@gmail.com]
