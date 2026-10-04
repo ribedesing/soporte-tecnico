@@ -1,0 +1,17 @@
+Options -Indexes
+
+# En producción se define APP_FORCE_HTTPS=1 en el entorno de PHP.
+# Apache debe servir esta aplicación detrás de HTTPS.
+
+RedirectMatch 404 ^/(?:.*/)?(?:logs|database|config|herramientas|vendor)(?:/|$)
+
+<FilesMatch "^(\.env.*|\.user\.ini|\.gitignore|composer\.(json|lock)|README.*|.*\.(sql|log|md|txt|bak|dist))$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+</IfModule>

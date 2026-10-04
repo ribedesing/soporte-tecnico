@@ -1,0 +1,6 @@
+# Deny-by-default. Solo endpoints que el navegador necesita directamente.
+
+Require all denied
+<FilesMatch "^(notificaciones|perfil|archivo_privado|actividad|analistas_estado|csrf_token|confirmar_cambio_correo)\.php$">
+Require all granted
+</FilesMatch>

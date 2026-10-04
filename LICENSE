@@ -1,0 +1,33 @@
+Copyright (c) 2026 [TU NOMBRE COMPLETO]. Todos los derechos reservados.
+Copyright (c) 2026 [YOUR FULL NAME]. All rights reserved.
+
+AVISO / NOTICE
+Este repositorio se publica únicamente para que reclutadores y evaluadores
+puedan revisar el trabajo del autor. Su publicación NO constituye una licencia
+de uso.
+
+1. PERMITIDO: ver y leer el código fuente en línea con fines de evaluación
+   profesional del autor.
+
+2. NO PERMITIDO sin autorización previa y por escrito del autor:
+   a) copiar, descargar para reutilizar, modificar o crear obras derivadas;
+   b) ejecutar el software con fines productivos o comerciales;
+   c) redistribuir, sublicenciar, vender o publicar el código, total o
+      parcialmente;
+   d) usar el código o partes de él para entrenar modelos de inteligencia
+      artificial o construir conjuntos de datos.
+
+3. Los datos que aparecen en la demostración y en database/seed_demo.sql son
+   ficticios.
+
+4. EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO.
+
+Para solicitar permiso o acceso ampliado: [TU CORREO DE CONTACTO]
+
+----------------------------------------------------------------------------
+This repository is published solely so that recruiters and evaluators can
+review the author's work. Publication does NOT grant any license of use.
+Viewing the source online for professional evaluation is permitted. Any
+copying, modification, derivative work, production or commercial use,
+redistribution, or use for AI training requires prior written permission from
+the author. The software is provided "AS IS", without warranty of any kind.

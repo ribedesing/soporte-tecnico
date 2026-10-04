@@ -1,0 +1,3238 @@
+/* =========================================================
+   Sistema de Soporte Técnico
+   Tokens de diseño
+   ========================================================= */
+:root {
+  --teal-900: #173a70;
+  --teal-800: #1e4e91;
+  --teal-700: #2864ce;
+  --teal-600: #4381e8;
+  --teal-100: #eaf2ff;
+  --blue-700: #2864ce;
+  --blue-100: #eaf2ff;
+  --green-600: #21865a;
+  --green-500: #2aa66d;
+  --yellow: #e5b92f;
+  --amber: #d6a51b;
+  --amber-bg: #fff5d6;
+  --pink: #d94f88;
+  --pink-bg: #fceaf1;
+  --purple: #7654c5;
+  --purple-bg: #f0ebff;
+  --red: #d6534a;
+  --red-bg: #fbe7e5;
+  --gray-bg: #edf1f7;
+  --ink: #17253b;
+  --ink-soft: #52627a;
+  --paper: #f3f7fc;
+  --card: #ffffff;
+  --border: #dfe7f1;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(23, 58, 112, 0.07);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+h4,
+.display-num {
+  font-family: var(--font-display);
+}
+a {
+  text-decoration: none;
+}
+
+/* ---------- Layout ---------- */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #173a70 0%, #102b52 100%);
+  color: #e8f0ff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  transition: transform 0.25s ease;
+}
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.35rem 1.25rem 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sidebar-brand img {
+  height: 34px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+.sidebar-brand .b-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1.15;
+  color: #fff;
+}
+.sidebar-brand .b-role {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f2d56d;
+}
+
+.sidebar-nav {
+  padding: 1rem 0.75rem;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(190, 211, 247, 0.55) transparent;
+}
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(190, 211, 247, 0.55);
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: #f2d56d;
+}
+.sidebar-nav .nav-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #a9c4f2;
+  margin: 1rem 0.6rem 0.4rem;
+}
+.sidebar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #e0eafc;
+  padding: 0.62rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+  border-left: 3px solid transparent;
+}
+.sidebar-nav .nav-link i {
+  font-size: 1.05rem;
+  width: 20px;
+  text-align: center;
+}
+.sidebar-nav .nav-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+.sidebar-nav .nav-link.active {
+  background: rgba(242, 213, 109, 0.14);
+  color: #fff;
+  border-left-color: #f2d56d;
+}
+.sidebar-foot {
+  padding: 1rem 1.1rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sidebar-foot .logout {
+  color: #ffb5d0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.main {
+  margin-left: 250px;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+.topbar h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+.topbar .subtitle {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+.topbar .user-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--teal-100);
+  color: var(--teal-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+#sidebarToggle {
+  display: none;
+}
+
+.content {
+  padding: 1.75rem;
+  flex: 1;
+}
+
+/* ---------- Cards / KPIs ---------- */
+.kpi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.25rem;
+  box-shadow: var(--shadow);
+  height: 100%;
+}
+.kpi-card .kpi-label {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.kpi-card .kpi-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0.35rem 0;
+}
+.kpi-card .kpi-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+}
+.card-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.card-panel .panel-head {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-panel .panel-head h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+.card-panel .panel-body {
+  padding: 1.25rem;
+}
+
+/* ---------- Ticket / Hoja de Servicio card ----------
+   Inspirado en el papel carbonado (copia técnico/usuario) de la
+   hoja de servicio física: borde perforado + talón numerado. */
+.ticket-card {
+  display: flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 0.75rem;
+}
+.ticket-stub {
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px dashed var(--border);
+  position: relative;
+}
+.ticket-stub span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+.ticket-stub.st-completado {
+  background: #eaf8ee;
+}
+.ticket-stub.st-proceso {
+  background: var(--amber-bg);
+}
+.ticket-stub.st-pendiente {
+  background: var(--red-bg);
+}
+.ticket-body {
+  padding: 0.85rem 1.1rem;
+  flex: 1;
+  min-width: 0;
+}
+.ticket-body .t-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.ticket-body .t-title {
+  font-weight: 600;
+  font-size: 0.94rem;
+  margin: 0;
+}
+.ticket-body .t-meta {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+.badge-completado {
+  background: #eaf8ee;
+  color: var(--green-600);
+}
+.badge-proceso {
+  background: var(--amber-bg);
+  color: #8a5a12;
+}
+.badge-pendiente {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.badge-completado,
+.badge-proceso,
+.badge-pendiente {
+  font-weight: 600;
+  font-size: 0.72rem;
+  padding: 0.35em 0.65em;
+  border-radius: 20px;
+}
+
+/* ---------- Forms ---------- */
+.form-section {
+  margin-bottom: 1.75rem;
+}
+.form-section .fs-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--teal-700);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+.form-section .fs-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+.service-check {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 100%;
+}
+.service-check:hover {
+  border-color: var(--teal-600);
+}
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.status-pick .form-check {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  flex: 1;
+}
+.status-pick .form-check-input:checked ~ .form-check-label {
+  font-weight: 700;
+}
+
+/* ---------- Buttons ---------- */
+.btn-brand {
+  background: linear-gradient(135deg, var(--teal-700), var(--green-600));
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+.btn-brand:hover {
+  filter: brightness(1.06);
+  color: #fff;
+}
+.btn-outline-brand {
+  border: 1.5px solid var(--teal-700);
+  color: var(--teal-800);
+  font-weight: 600;
+  background: transparent;
+}
+.btn-outline-brand:hover {
+  background: var(--teal-100);
+  color: var(--teal-900);
+}
+
+/* ---------- Login ---------- */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+}
+.login-aside {
+  flex: 1;
+  background: radial-gradient(circle at 20% 20%, #4381e8, var(--teal-900) 60%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.login-aside::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  bottom: -120px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: rgba(242, 213, 109, 0.2);
+}
+.login-form-side {
+  width: 460px;
+  flex-shrink: 0;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+.register-form-side {
+  padding: 1rem 1.75rem;
+}
+.register-form-side .form-label {
+  font-size: 0.74rem;
+  margin-bottom: 0.1rem;
+}
+.register-form-side .form-control {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.55rem;
+}
+.register-form-side .form-text {
+  font-size: 0.62rem;
+  line-height: 1.05;
+  margin-top: 0.1rem;
+}
+.register-form-side .alert {
+  font-size: 0.7rem;
+  margin-bottom: 0.45rem;
+  padding: 0.35rem 0.55rem;
+}
+.register-form-side .small {
+  font-size: 0.7rem;
+}
+
+@media (max-width: 991px) {
+  .login-aside {
+    display: none;
+  }
+  .login-form-side {
+    width: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  .main {
+    margin-left: 0;
+  }
+  #sidebarToggle {
+    display: inline-flex;
+  }
+}
+
+/* =========================================================
+   Navegación inferior — módulo técnico en celular
+   La mayoría de los analistas usan su teléfono, así que en
+   pantallas chicas el acceso principal vive abajo (pulgar),
+   no en un sidebar que hay que abrir.
+   ========================================================= */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1040;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -2px 12px rgba(23, 58, 112, 0.08);
+  padding: 0.35rem 0.5rem calc(0.35rem + env(safe-area-inset-bottom));
+}
+.bottom-nav .bn-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.bottom-nav .bn-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.5rem 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 10px;
+}
+.bottom-nav .bn-item i {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+.bottom-nav .bn-item.active {
+  color: var(--teal-700);
+}
+.bottom-nav .bn-item.bn-cta {
+  color: #fff;
+  background: linear-gradient(135deg, var(--teal-700), #4381e8);
+  margin-top: -22px;
+  border-radius: 16px;
+  padding-top: 0.6rem;
+  box-shadow: 0 4px 12px rgba(40, 100, 206, 0.3);
+}
+@media (max-width: 767px) {
+  html {
+    font-size: 50%;
+  }
+  .bottom-nav {
+    display: block;
+  }
+  .main {
+    padding-bottom: 96px;
+  } /* deja espacio para que la barra no tape contenido */
+  .content {
+    padding: 1.1rem;
+  }
+  .topbar {
+    padding: 0.7rem 1.1rem;
+  }
+  .topbar .subtitle {
+    display: none;
+  } /* en celular sobra, prioriza el título */
+  .analista-secondary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .analista-secondary > .card-panel {
+    margin-bottom: 0 !important;
+    min-width: 0;
+  }
+  .analista-secondary .panel-head {
+    display: block;
+    padding: 0.8rem;
+  }
+  .analista-secondary .panel-head h2 {
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+  .analista-secondary .panel-body {
+    padding: 0.8rem;
+  }
+  .analista-secondary .d-flex {
+    display: block !important;
+  }
+  .analista-secondary .fw-bold {
+    display: block;
+    margin-top: 0.2rem;
+  }
+  .form-section-mobile-half {
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+    margin-right: 1%;
+  }
+  .form-section-mobile-half + .form-section-mobile-half {
+    margin-right: 0;
+  }
+  .form-section-mobile-half .row > [class*="col-"] {
+    width: 50%;
+  }
+  .form-section-mobile-half .status-pick {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+  .form-section-mobile-half .status-pick .form-check {
+    min-width: 0;
+    padding: 0.6rem;
+  }
+  .worksheet-form-page .form-section:not(.form-section-mobile-half) {
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+  .worksheet-form-page #descripcionServicio {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    min-height: 130px;
+    pointer-events: auto;
+    touch-action: manipulation;
+    resize: vertical;
+  }
+}
+
+/* =========================================================
+   Vista imprimible / "Exportar a PDF"
+   Se usa window.print() — sin depender de librerías externas,
+   funciona sin conexión a internet.
+   ========================================================= */
+.print-sheet {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 850px;
+  margin: 0 auto;
+}
+.print-sheet .ps-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+.print-sheet .ps-head img {
+  height: 46px;
+}
+.print-sheet .ps-head h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+.print-sheet .ps-head .ps-sub {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+.print-sheet .ps-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+}
+.print-sheet .ps-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.print-sheet .ps-value {
+  font-weight: 600;
+}
+.print-sheet .ps-check-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem 1rem;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1rem;
+}
+.print-sheet .ps-check-grid li {
+  list-style: none;
+}
+.print-sheet .ps-check-grid li.marcado {
+  font-weight: 700;
+  color: var(--teal-800);
+}
+.print-sheet .ps-check-grid li.marcado::before {
+  content: "\2611\0020";
+}
+.print-sheet .ps-check-grid li:not(.marcado)::before {
+  content: "\2610\0020";
+  color: var(--ink-soft);
+}
+.print-sheet .ps-firma-box {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem;
+  text-align: center;
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.print-sheet .ps-firma-box img {
+  max-height: 90px;
+  max-width: 100%;
+}
+.print-sheet .ps-evidencia {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem;
+  text-align: center;
+  background: var(--paper);
+}
+.print-sheet .ps-evidencia img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 280px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+  .print-sheet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   Campanita de notificaciones (secretaría)
+   ========================================================= */
+.notif-bell {
+  position: relative;
+}
+.notif-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid var(--card);
+}
+.notif-panel {
+  width: 340px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 0.4rem;
+}
+.notif-item {
+  display: flex;
+  gap: 0.65rem;
+  padding: 0.6rem 0.6rem;
+  border-radius: 10px;
+}
+.notif-item:hover {
+  background: var(--paper);
+}
+.notif-item .notif-ic {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--teal-100);
+  color: var(--teal-700);
+  font-size: 0.9rem;
+}
+.notif-item .notif-msg {
+  font-size: 0.83rem;
+  line-height: 1.3;
+}
+.notif-item .notif-time {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   Tarjeta de credenciales del analista (código + QR)
+   ========================================================= */
+.credencial-card {
+  border: 1.5px dashed var(--teal-600);
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: var(--teal-100);
+}
+.credencial-card .cc-codigo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  color: var(--teal-900);
+}
+#qrCode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 0.75rem;
+  border-radius: 12px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   RESPONSIVE MOBILE — estilo aplicación móvil
+   Basado en la referencia suministrada:
+   - contenido compacto y táctil
+   - tarjetas redondeadas
+   - navegación inferior
+   - topbar simplificada
+   - formularios y tablas adaptados a pantalla estrecha
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  html {
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background: #f3f7fc;
+  }
+
+  .app-shell {
+    display: block;
+    min-height: 100vh;
+  }
+
+  /* Sidebar: se convierte en menú lateral desplegable */
+  .sidebar {
+    width: min(82vw, 300px);
+    box-shadow: 8px 0 30px rgba(23, 58, 112, 0.2);
+    z-index: 1050;
+  }
+
+  .sidebar-brand {
+    padding: 1rem 1.1rem;
+  }
+
+  .sidebar-brand img {
+    height: 32px;
+  }
+
+  .sidebar-nav {
+    padding: 0.75rem 0.65rem;
+  }
+
+  .sidebar-nav .nav-link {
+    min-height: 46px;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.88rem;
+  }
+
+  .sidebar-foot {
+    padding: 0.9rem 1rem 1.1rem;
+  }
+
+  /* Área principal */
+  .main {
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 82px;
+  }
+
+  /* Cabecera tipo app */
+  .topbar {
+    min-height: 62px;
+    padding: 0.65rem 0.85rem;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    box-shadow: 0 1px 8px rgba(23, 58, 112, 0.06);
+  }
+
+  .topbar h1 {
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .topbar .subtitle {
+    display: block;
+    margin-top: 0.12rem;
+    font-size: 0.68rem;
+    white-space: nowrap;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #sidebarToggle {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    flex-shrink: 0;
+  }
+
+  .topbar .btn-light {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+  }
+
+  .topbar .avatar {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+
+  .topbar .dropdown-menu {
+    max-width: calc(100vw - 20px);
+  }
+
+  .topbar .dropdown-menu[style*="width:360px"] {
+    width: min(360px, calc(100vw - 20px)) !important;
+  }
+
+  .content {
+    padding: 0.85rem;
+  }
+
+  /* Encabezados de páginas */
+  .content > .d-flex.justify-content-between,
+  .content > .d-flex.align-items-center.justify-content-between {
+    align-items: flex-start !important;
+    gap: 0.7rem;
+    margin-bottom: 1rem !important;
+    flex-wrap: wrap;
+  }
+
+  .content h2 {
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+
+  .content h3 {
+    font-size: 1rem;
+  }
+
+  .content .text-muted {
+    line-height: 1.35;
+  }
+
+  /* KPIs: apariencia de tarjetas de app */
+  .row.g-3.mb-4 {
+    --bs-gutter-x: 0.65rem;
+    --bs-gutter-y: 0.65rem;
+  }
+
+  .kpi-card {
+    min-height: 116px;
+    padding: 0.85rem;
+    border-radius: 16px;
+    box-shadow: 0 3px 12px rgba(23, 58, 112, 0.07);
+  }
+
+  .kpi-card .kpi-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+
+  .kpi-card .kpi-label {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 1.55rem;
+    margin-top: 0.3rem;
+  }
+
+  /* Paneles */
+  .card-panel {
+    border-radius: 16px;
+    box-shadow: 0 3px 14px rgba(23, 58, 112, 0.06);
+  }
+
+  .card-panel .panel-head {
+    padding: 0.85rem 0.9rem;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .card-panel .panel-head h2 {
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+
+  .card-panel .panel-body {
+    padding: 0.9rem;
+  }
+
+  /* Tarjetas de tickets / hojas: estilo ficha móvil */
+  .ticket-card {
+    border-radius: 15px;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 3px 12px rgba(23, 58, 112, 0.07);
+  }
+
+  .ticket-stub {
+    width: 42px;
+  }
+
+  .ticket-stub span {
+    font-size: 0.66rem;
+  }
+
+  .ticket-body {
+    padding: 0.75rem 0.8rem;
+  }
+
+  .ticket-body .t-top {
+    align-items: flex-start;
+  }
+
+  .ticket-body .t-title {
+    font-size: 0.82rem;
+    line-height: 1.3;
+    padding-right: 0.15rem;
+  }
+
+  .ticket-body .t-meta {
+    font-size: 0.69rem;
+    line-height: 1.4;
+  }
+
+  .ticket-body .btn {
+    font-size: 0.7rem;
+    min-height: 32px;
+    border-radius: 9px;
+  }
+
+  .badge-completado,
+  .badge-proceso,
+  .badge-pendiente {
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
+
+  /* Botones y controles táctiles */
+  .btn {
+    min-height: 38px;
+    border-radius: 10px;
+  }
+
+  .btn-sm {
+    min-height: 34px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.72rem;
+  }
+
+  .form-control,
+  .form-select {
+    min-height: 42px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+  }
+
+  textarea.form-control {
+    min-height: 110px;
+  }
+
+  .form-label {
+    font-size: 0.72rem;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Formularios en móvil: una columna */
+  .content .row > [class*="col-"] {
+    margin-bottom: 0;
+  }
+
+  /* Filtros */
+  .content form.row.g-2 {
+    --bs-gutter-x: 0.5rem;
+    --bs-gutter-y: 0.5rem;
+  }
+
+  .content form.row.g-2 > [class*="col-"] {
+    width: 100%;
+  }
+
+  /* Tablas: desplazamiento horizontal limpio */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .table-responsive table {
+    min-width: 650px;
+    font-size: 0.72rem;
+  }
+
+  .table-responsive th,
+  .table-responsive td {
+    padding: 0.65rem 0.55rem;
+    white-space: nowrap;
+  }
+
+  /* Pestañas */
+  .nav-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.25rem;
+    gap: 0.35rem;
+  }
+
+  .nav-pills .nav-link {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 0.72rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Modales adaptados al teléfono */
+  .modal-dialog {
+    margin: 0.6rem;
+  }
+
+  .modal-content {
+    border: 0;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 0.9rem;
+  }
+
+  .modal-title {
+    font-size: 0.95rem;
+  }
+
+  /* Gráficos */
+  .chart-container,
+  .position-relative {
+    max-width: 100%;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
+
+  /* Navegación inferior estilo app */
+  .bottom-nav {
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.3rem 0.45rem calc(0.3rem + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.98);
+    border-top: 1px solid #dde7e4;
+    box-shadow: 0 -4px 18px rgba(23, 58, 112, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .bottom-nav .bn-grid {
+    max-width: 520px;
+    margin: 0 auto;
+    gap: 0.2rem;
+  }
+
+  .bottom-nav .bn-item {
+    min-height: 58px;
+    padding: 0.45rem 0.2rem;
+    gap: 0.12rem;
+    border-radius: 12px;
+    color: #60716d;
+    font-size: 0.62rem;
+    font-weight: 700;
+  }
+
+  .bottom-nav .bn-item i {
+    font-size: 1.25rem;
+  }
+
+  .bottom-nav .bn-item.active {
+    color: var(--teal-700);
+    background: var(--teal-100);
+  }
+
+  .bottom-nav .bn-item.bn-cta {
+    color: #fff;
+    background: linear-gradient(135deg, var(--teal-700), var(--green-600));
+    margin-top: -15px;
+    min-height: 64px;
+    padding-top: 0.65rem;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(40, 100, 206, 0.28);
+  }
+
+  .bottom-nav .bn-item.bn-cta i {
+    font-size: 1.45rem;
+  }
+
+  /* Credencial / QR */
+  .credencial-card {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .credencial-card .cc-codigo {
+    font-size: 1.25rem;
+  }
+
+  #qrCode {
+    max-width: 100%;
+  }
+
+  /* Hoja imprimible */
+  .print-sheet {
+    padding: 1rem;
+    border-radius: 14px;
+  }
+
+  .print-sheet .ps-row,
+  .print-sheet .ps-check-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .print-sheet .ps-technician-signature {
+    order: 2;
+  }
+
+  .print-sheet .ps-evidencia img {
+    width: auto;
+    max-width: 100%;
+    max-height: none;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 380px) {
+  .content {
+    padding: 0.7rem;
+  }
+
+  .topbar {
+    padding: 0.55rem 0.65rem;
+  }
+
+  .topbar h1 {
+    font-size: 0.92rem;
+  }
+
+  .kpi-card {
+    min-height: 108px;
+    padding: 0.7rem;
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 1.35rem;
+  }
+
+  .ticket-stub {
+    width: 38px;
+  }
+
+  .bottom-nav .bn-item {
+    font-size: 0.57rem;
+  }
+}
+
+/* =========================================================
+   AJUSTES RESPONSIVE V2
+   ========================================================= */
+
+/* Botón cerrar sidebar + capa de fondo */
+.sidebar-close {
+  display: none;
+}
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+    z-index: 2;
+  }
+
+  .sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 24, 21, 0.45);
+    z-index: 1040;
+  }
+
+  .sidebar.show + .sidebar-overlay {
+    display: block;
+  }
+}
+
+/* ---------- Pantallas de autenticación ---------- */
+@media (max-width: 991.98px) {
+  .login-wrap {
+    min-height: 100dvh;
+    background: radial-gradient(
+      circle at 15% 10%,
+      #4381e8 0%,
+      var(--teal-900) 58%,
+      #102b52 100%
+    );
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 0.75rem 1.5rem;
+    overflow-y: auto;
+  }
+
+  .login-aside {
+    display: flex;
+    width: 100%;
+    flex: none;
+    min-height: 0;
+    padding: 1rem 1rem 0.8rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .login-aside::after {
+    display: none;
+  }
+
+  .login-aside > img {
+    height: 76px !important;
+    margin: 0 auto 0.45rem !important;
+  }
+
+  .login-aside h1 {
+    font-size: 1.05rem !important;
+    line-height: 1.18 !important;
+    max-width: 330px !important;
+    margin: 0 auto !important;
+  }
+
+  .login-aside p {
+    max-width: 340px !important;
+    font-size: 0.68rem !important;
+    line-height: 1.3 !important;
+    margin: 0.35rem auto 0 !important;
+  }
+
+  .login-form-side {
+    width: calc(100% - 1.5rem);
+    max-width: 520px;
+    margin: 0.75rem auto 1rem;
+    padding: 1rem 0.9rem;
+    position: relative;
+    z-index: 1;
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+    align-items: flex-start;
+  }
+
+  .login-form-side::after {
+    content: "";
+    position: absolute;
+    top: calc(100% - 10px);
+    right: -75px;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: rgba(45, 190, 89, 0.18);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .login-form-side > div {
+    max-width: 100% !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .login-form-side h2 {
+    font-size: 1.05rem !important;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .login-form-side > div > p {
+    font-size: 0.72rem !important;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .login-form-side .form-label {
+    font-size: 0.68rem;
+    margin-bottom: 0.18rem;
+  }
+
+  .login-form-side .form-control,
+  .login-form-side .input-group-text {
+    min-height: 37px;
+    font-size: 0.76rem;
+    padding: 0.35rem 0.55rem;
+  }
+
+  .login-form-side .input-group-text {
+    min-width: 36px;
+    justify-content: center;
+  }
+
+  .login-form-side .mb-3 {
+    margin-bottom: 0.55rem !important;
+  }
+
+  .login-form-side .mb-2 {
+    margin-bottom: 0.35rem !important;
+  }
+
+  .login-form-side .btn {
+    min-height: 37px;
+    font-size: 0.75rem;
+    padding: 0.45rem 0.7rem !important;
+  }
+
+  .login-form-side .small {
+    font-size: 0.68rem !important;
+  }
+
+  .login-form-side .alert {
+    font-size: 0.66rem;
+    line-height: 1.25;
+    padding: 0.35rem 0.5rem !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .login-form-side > div > p:last-child {
+    margin-top: 0.65rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Registro: conserva dos campos por fila y Usuario ocupa todo el ancho */
+  .register-form-side {
+    padding: 0.8rem 0.85rem;
+  }
+
+  .register-form-side .row {
+    --bs-gutter-x: 0.45rem;
+    --bs-gutter-y: 0.35rem;
+  }
+
+  .register-form-side .form-control {
+    min-height: 35px;
+    font-size: 0.7rem;
+    padding: 0.28rem 0.5rem;
+  }
+
+  .register-form-side .form-label {
+    font-size: 0.63rem;
+  }
+
+  .register-form-side .form-text {
+    font-size: 0.55rem;
+    line-height: 1.1;
+  }
+
+  .register-form-side .btn {
+    margin-top: 0.35rem !important;
+    min-height: 36px;
+  }
+
+  .register-form-side .text-center.mt-3 {
+    margin-top: 0.45rem !important;
+  }
+
+  .register-form-side > div > p.text-center {
+    margin-top: 0.55rem !important;
+    font-size: 0.58rem !important;
+  }
+}
+
+/* En móvil el branding del formulario también queda centrado */
+@media (max-width: 767.98px) {
+  html {
+    font-size: 90%;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-width: 320px;
+    overflow-x: hidden;
+  }
+
+  /* anulamos el 50% de la versión anterior */
+  .content {
+    padding: 0.8rem;
+  }
+
+  .topbar {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .topbar h1 {
+    font-size: 0.95rem;
+  }
+
+  .topbar .subtitle {
+    display: block;
+    font-size: 0.65rem;
+  }
+
+  .main {
+    padding-bottom: 76px;
+  }
+
+  .sidebar {
+    width: min(82vw, 285px);
+  }
+
+  .sidebar-overlay {
+    z-index: 1045;
+  }
+
+  /* Departamento: interfaz más compacta */
+  .content h2 {
+    font-size: 0.95rem;
+  }
+
+  .content h3 {
+    font-size: 0.9rem;
+  }
+
+  .content p,
+  .content .text-muted {
+    font-size: 0.7rem;
+  }
+
+  .content .btn {
+    min-height: 34px;
+    font-size: 0.68rem;
+    padding: 0.35rem 0.55rem;
+  }
+
+  .kpi-card {
+    min-height: 92px;
+    padding: 0.7rem 0.75rem;
+    border-radius: 13px;
+  }
+
+  .kpi-card .kpi-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
+
+  .kpi-card .kpi-label {
+    font-size: 0.62rem;
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 1.35rem;
+  }
+
+  .card-panel {
+    border-radius: 13px;
+  }
+
+  .card-panel .panel-head {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .card-panel .panel-head h2 {
+    font-size: 0.78rem;
+  }
+
+  .card-panel .panel-body {
+    padding: 0.75rem;
+  }
+
+  /* Tickets y hojas: cada registro cabe completo en el ancho */
+  .mobile-stack-table {
+    width: 100%;
+  }
+
+  .mobile-stack-table thead {
+    display: none;
+  }
+
+  .mobile-stack-table,
+  .mobile-stack-table tbody,
+  .mobile-stack-table tr,
+  .mobile-stack-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-stack-table tr {
+    margin: 0 0 0.6rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: 0 2px 8px rgba(23, 58, 112, 0.05);
+  }
+
+  .mobile-stack-table td {
+    border: 0 !important;
+    padding: 0.28rem 0 !important;
+    white-space: normal !important;
+    font-size: 0.66rem;
+    line-height: 1.3;
+    text-align: right;
+  }
+
+  .mobile-stack-table td::before {
+    content: attr(data-label);
+    float: left;
+    color: var(--ink-soft);
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-right: 0.6rem;
+  }
+
+  .mobile-stack-table td:first-child {
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .mobile-stack-table td:last-child {
+    padding-bottom: 0 !important;
+  }
+
+  .mobile-stack-table td[colspan] {
+    text-align: center;
+  }
+
+  .mobile-stack-table td[colspan]::before {
+    display: none;
+  }
+
+  .table-responsive {
+    overflow: visible;
+  }
+
+  /* El listado de tickets conserva la tabla normal en el ancho disponible */
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) {
+    display: table !important;
+    width: 100% !important;
+    min-width: 0;
+    table-layout: fixed;
+    font-size: 0.52rem;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) thead {
+    display: table-header-group !important;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) tbody {
+    display: table-row-group !important;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) tr {
+    display: table-row !important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) th,
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) td {
+    display: table-cell !important;
+    padding: 0.42rem 0.25rem !important;
+    font-size: 0.52rem !important;
+    text-align: left;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) th:nth-child(1),
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) td:nth-child(1) {
+    width: 16%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) th:nth-child(2),
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) td:nth-child(2) {
+    width: 32%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) th:nth-child(3),
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) td:nth-child(3) {
+    width: 18%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) th:nth-child(4),
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) td:nth-child(4) {
+    width: 17%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) th:nth-child(5),
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) td:nth-child(5) {
+    width: 17%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(5):last-child) td::before {
+    display: none;
+  }
+
+  .table-responsive:has(.mobile-stack-table thead th:nth-child(5):last-child) {
+    overflow-x: hidden;
+  }
+
+  /* El listado de hojas conserva la tabla normal en el ancho disponible */
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) {
+    display: table !important;
+    width: 100% !important;
+    min-width: 0;
+    table-layout: fixed;
+    font-size: 0.5rem;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) thead {
+    display: table-header-group !important;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) tbody {
+    display: table-row-group !important;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) tr {
+    display: table-row !important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) th,
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td {
+    display: table-cell !important;
+    padding: 0.38rem 0.18rem !important;
+    font-size: 0.5rem !important;
+    text-align: left;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) th:nth-child(1),
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td:nth-child(1) {
+    width: 15%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) th:nth-child(2),
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td:nth-child(2) {
+    width: 13%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) th:nth-child(3),
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td:nth-child(3) {
+    width: 16%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) th:nth-child(4),
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td:nth-child(4) {
+    width: 19%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) th:nth-child(5),
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td:nth-child(5) {
+    width: 21%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) th:nth-child(6),
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td:nth-child(6) {
+    width: 16%;
+  }
+
+  .mobile-stack-table:has(thead th:nth-child(6):last-child) td::before {
+    display: none;
+  }
+
+  .table-responsive:has(.mobile-stack-table thead th:nth-child(6):last-child) {
+    overflow-x: hidden;
+  }
+
+  /* Encabezados de páginas de departamento */
+  .department-page-header {
+    display: block !important;
+  }
+
+  .department-page-header .btn {
+    width: 100%;
+    margin-top: 0.55rem;
+  }
+
+  /* El botón Nuevo ticket queda debajo de la tarjeta KPI */
+  .department-new-ticket {
+    display: block;
+    margin: -0.15rem 0 0.75rem;
+  }
+
+  .department-new-ticket .btn {
+    width: 100%;
+  }
+}
+
+/* Password eye */
+.password-toggle {
+  cursor: pointer;
+  user-select: none;
+  min-width: 38px;
+}
+.password-toggle:hover {
+  background: #f4f7f6 !important;
+}
+
+/* RESPONSIVE V3 */
+@media (max-width: 767.98px) {
+  .login-form-side > div > img.d-lg-none {
+    display: none !important;
+  }
+  .login-wrap {
+    min-height: 100svh;
+    padding: 1.25rem 0.75rem 1.5rem;
+    overflow: hidden !important;
+  }
+  .login-aside {
+    padding: 0.35rem 0.7rem 0.25rem !important;
+  }
+  .login-aside > img {
+    height: 52px !important;
+    margin: 0 auto 0.15rem !important;
+  }
+  .login-aside h1 {
+    font-size: 0.84rem !important;
+    line-height: 1.12 !important;
+  }
+  .login-aside p {
+    font-size: 0.55rem !important;
+    line-height: 1.1 !important;
+    margin: 0.1rem auto 0 !important;
+  }
+  .login-form-side {
+    width: calc(100% - 1rem) !important;
+    padding: 0.55rem 0.65rem !important;
+    margin: 0.75rem auto 1rem !important;
+  }
+  .login-form-side h2 {
+    font-size: 0.86rem !important;
+  }
+  .login-form-side > div > p {
+    font-size: 0.59rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+  .login-form-side .form-label {
+    font-size: 0.58rem !important;
+  }
+  .login-form-side .form-control,
+  .login-form-side .input-group-text {
+    min-height: 31px !important;
+    font-size: 0.65rem !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+  .login-form-side .mb-3 {
+    margin-bottom: 0.3rem !important;
+  }
+  .login-form-side .btn {
+    min-height: 31px !important;
+    font-size: 0.64rem !important;
+  }
+  .login-form-side .small {
+    font-size: 0.57rem !important;
+  }
+  .register-form-side .row {
+    --bs-gutter-x: 0.3rem;
+    --bs-gutter-y: 0.2rem;
+  }
+  .register-form-side .col-md-6 {
+    width: 50% !important;
+  }
+  .register-form-side .col-12 {
+    width: 100% !important;
+  }
+  .register-form-side .form-control {
+    min-height: 30px !important;
+    font-size: 0.62rem !important;
+  }
+  .register-form-side .form-label {
+    font-size: 0.56rem !important;
+  }
+  .register-form-side .form-text {
+    font-size: 0.48rem !important;
+  }
+  .register-form-side .btn {
+    min-height: 31px !important;
+  }
+  .department-compact .card-panel {
+    max-width: 680px !important;
+  }
+  .department-compact .panel-body {
+    padding: 0.55rem !important;
+  }
+  .department-compact .mb-3 {
+    margin-bottom: 0.4rem !important;
+  }
+  .department-compact .form-label {
+    font-size: 0.57rem !important;
+  }
+  .department-compact .form-control,
+  .department-compact .form-select {
+    min-height: 32px !important;
+    font-size: 0.64rem !important;
+  }
+  .department-compact textarea.form-control {
+    min-height: 65px !important;
+  }
+  .department-compact .alert {
+    font-size: 0.58rem !important;
+    padding: 0.4rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+  .department-compact .btn {
+    min-height: 31px !important;
+    font-size: 0.62rem !important;
+  }
+  .mobile-stack-table tr {
+    padding: 0.42rem 0.5rem !important;
+  }
+  .mobile-stack-table td {
+    grid-template-columns: 34% 66% !important;
+    font-size: 0.6rem !important;
+    padding: 0.22rem 0 !important;
+  }
+  .mobile-stack-table td::before {
+    font-size: 0.53rem !important;
+  }
+  .mobile-stack-table td a {
+    font-size: 0.6rem !important;
+  }
+  .mobile-stack-table .badge {
+    font-size: 0.52rem !important;
+  }
+  .worksheet-page {
+    padding: 0.65rem !important;
+  }
+  .worksheet-page > .d-flex {
+    gap: 0.45rem !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 0.65rem !important;
+  }
+  .worksheet-page > .d-flex .btn {
+    font-size: 0.6rem !important;
+    padding: 0.3rem 0.45rem !important;
+  }
+  .worksheet-page .print-sheet {
+    font-size: 0.58rem !important;
+    padding: 0.6rem !important;
+    width: 100%;
+    overflow: hidden;
+  }
+  .worksheet-page .ps-head {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    gap: 0.28rem !important;
+    padding-bottom: 0.45rem !important;
+    margin-bottom: 0.6rem !important;
+  }
+  .worksheet-page .ps-head img {
+    max-height: 30px !important;
+    width: auto !important;
+    align-self: start;
+  }
+  .worksheet-page .ps-head h1 {
+    font-size: 0.7rem !important;
+    line-height: 1.05 !important;
+  }
+  .worksheet-page .ps-sub {
+    font-size: 0.43rem !important;
+    line-height: 1.1 !important;
+  }
+  .worksheet-page .ps-head > .ms-auto {
+    grid-column: 1 / -1;
+    text-align: left !important;
+    margin-left: 0 !important;
+  }
+  .worksheet-page .ps-head .ps-label {
+    font-size: 0.48rem !important;
+  }
+  .worksheet-page .ps-head .ps-value {
+    font-size: 0.65rem !important;
+  }
+  .worksheet-page .ps-label {
+    font-size: 0.43rem !important;
+    line-height: 1.1 !important;
+  }
+  .worksheet-page .ps-value {
+    font-size: 0.55rem !important;
+    line-height: 1.15 !important;
+    overflow-wrap: anywhere;
+  }
+  .worksheet-page .ps-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.3rem 0.4rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+  .worksheet-page .ps-row > div:nth-child(3):last-child {
+    grid-column: 1 / -1;
+  }
+  .worksheet-page .ps-check-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.15rem 0.3rem !important;
+    margin: 0.25rem 0 0.6rem !important;
+  }
+  .worksheet-page .ps-check-grid li {
+    font-size: 0.48rem !important;
+    line-height: 1.1 !important;
+    padding: 0.15rem !important;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .worksheet-page .ps-firma-box {
+    min-height: 68px !important;
+    padding: 0.3rem !important;
+  }
+  .worksheet-page .ps-firma-box img {
+    max-height: 56px !important;
+  }
+  .worksheet-page .ps-evidencia {
+    padding: 0.35rem !important;
+  }
+  .worksheet-page .ps-evidencia img {
+    max-width: 100% !important;
+    max-height: 120px !important;
+  }
+  .worksheet-page .ps-row + p:not(.fw-bold) {
+    font-size: 0.62rem !important;
+    line-height: 1.2 !important;
+    overflow-wrap: anywhere;
+  }
+  .worksheet-page .fw-bold.small {
+    font-size: 0.5rem !important;
+    margin-bottom: 0.2rem !important;
+    margin-top: 0.35rem !important;
+  }
+
+  /* Formulario de hoja: cada sección ocupa su propia fila en móvil */
+  .worksheet-form-page .form-section-mobile-half {
+    display: block !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+  .worksheet-form-page .form-section {
+    margin-bottom: 1rem !important;
+  }
+  .worksheet-form-page .conformidad-section > .row {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .worksheet-form-page .conformidad-section .especialista-tecnico {
+    order: 2 !important;
+  }
+  .worksheet-form-page .form-section > .row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.55rem !important;
+    margin: 0 !important;
+  }
+  .worksheet-form-page .form-section > .row > [class*="col-"] {
+    width: auto !important;
+    grid-column: auto !important;
+    padding: 0 !important;
+  }
+  .worksheet-form-page
+    .form-section
+    > .row
+    > [class*="col-"]:first-child:nth-last-child(3) {
+    grid-column: 1 / -1 !important;
+  }
+  .worksheet-form-page .service-check {
+    min-height: 42px;
+    padding: 0.45rem 0.5rem !important;
+    font-size: 0.68rem !important;
+  }
+  .worksheet-form-page .service-check span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .worksheet-form-page .service-check input[name="otro_especifique"] {
+    width: 100px !important;
+    max-width: 100%;
+  }
+  .worksheet-form-page .status-pick {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .worksheet-form-page .status-pick .form-check {
+    min-width: 0;
+    padding: 0.5rem !important;
+  }
+  .worksheet-form-page .status-pick .form-check:last-child {
+    grid-column: 1 / -1;
+  }
+  .worksheet-form-page .panel-body.border-top {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .worksheet-form-page .panel-body.border-top .btn {
+    width: 100%;
+  }
+
+  .secretaria-hojas-filtros {
+    --bs-gutter-x: 0.4rem !important;
+    --bs-gutter-y: 0.4rem !important;
+  }
+  .content .secretaria-hojas-filtros > [class*="col-"] {
+    width: 50% !important;
+    margin-bottom: 0 !important;
+  }
+  .secretaria-hojas-filtros .form-select,
+  .secretaria-hojas-filtros .form-control {
+    min-height: 32px !important;
+    height: 32px !important;
+    padding: 0.2rem 0.35rem !important;
+    font-size: 0.6rem !important;
+    border-radius: 7px !important;
+  }
+
+  .secretaria-dashboard-filtros {
+    --bs-gutter-x: 0.4rem !important;
+    --bs-gutter-y: 0.4rem !important;
+  }
+  .content .secretaria-dashboard-filtros > [class*="col-"] {
+    width: 50% !important;
+    margin-bottom: 0 !important;
+  }
+  .secretaria-dashboard-filtros .form-select,
+  .secretaria-dashboard-filtros .form-control {
+    min-height: 32px !important;
+    height: 32px !important;
+    padding: 0.2rem 0.35rem !important;
+    font-size: 0.6rem !important;
+    border-radius: 7px !important;
+  }
+
+  .secretaria-detalle-filtros {
+    --bs-gutter-x: 0.4rem !important;
+    --bs-gutter-y: 0.4rem !important;
+  }
+  .content .secretaria-detalle-filtros > [class*="col-"] {
+    width: 50% !important;
+    margin-bottom: 0 !important;
+  }
+  .secretaria-detalle-filtros .form-select,
+  .secretaria-detalle-filtros .form-control,
+  .secretaria-detalle-filtros .btn {
+    min-height: 32px !important;
+    height: 32px !important;
+    padding: 0.2rem 0.35rem !important;
+    font-size: 0.6rem !important;
+    border-radius: 7px !important;
+  }
+
+  /* Texto general móvil: más legible; tablas y hojas mantienen su escala compacta */
+  .content:not(.worksheet-page) h2 {
+    font-size: 1.02rem !important;
+  }
+  .content:not(.worksheet-page) h3 {
+    font-size: 0.98rem !important;
+  }
+  .content:not(.worksheet-page) p,
+  .content:not(.worksheet-page) .text-muted {
+    font-size: 0.78rem !important;
+  }
+  .content:not(.worksheet-page) .btn {
+    font-size: 0.74rem !important;
+  }
+  .content:not(.worksheet-page) .form-label {
+    font-size: 0.7rem !important;
+  }
+  .content:not(.worksheet-page) .form-control,
+  .content:not(.worksheet-page) .form-select,
+  .content:not(.worksheet-page) textarea {
+    font-size: 0.74rem !important;
+  }
+}
+
+/* =========================================================
+   Ajustes responsive solicitados + modo claro/oscuro
+   ========================================================= */
+:root {
+  color-scheme: light;
+}
+html.dark-mode,
+body.dark-mode {
+  color-scheme: dark;
+  --paper: #111b2a;
+  --card: #182438;
+  --border: #2b3d55;
+  --ink: #e8eff9;
+  --ink-soft: #aab9ce;
+  --gray-bg: #202e42;
+  --teal-100: #203a61;
+  --amber-bg: #493f22;
+  --red-bg: #472624;
+}
+.dark-mode body {
+  background: var(--paper);
+  color: var(--ink);
+}
+.dark-mode .topbar,
+.dark-mode .card-panel,
+.dark-mode .kpi-card,
+.dark-mode .login-form-side,
+.dark-mode .modal-content,
+.dark-mode .dropdown-menu,
+.dark-mode .table {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--border);
+}
+.dark-mode .text-muted {
+  color: var(--ink-soft) !important;
+}
+.dark-mode .form-control,
+.dark-mode .form-select,
+.dark-mode .input-group-text {
+  background: #202e42 !important;
+  color: var(--ink) !important;
+  border-color: var(--border) !important;
+}
+.dark-mode .form-control::placeholder {
+  color: #91a1b8;
+}
+.dark-mode .table {
+  --bs-table-color: var(--ink);
+  --bs-table-bg: var(--card);
+  --bs-table-border-color: var(--border);
+}
+.dark-mode .table thead {
+  background: #202e42 !important;
+}
+.dark-mode .btn-light {
+  background: #202e42;
+  border-color: var(--border);
+  color: var(--ink);
+}
+.dark-mode .dropdown-item {
+  color: var(--ink);
+}
+.dark-mode .dropdown-item:hover {
+  background: #273850;
+  color: #fff;
+}
+.dark-mode .bg-light {
+  background: #273850 !important;
+}
+.dark-mode .alert {
+  border-color: var(--border);
+}
+.dark-mode .toast,
+.dark-mode .toast-header {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--border);
+}
+.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
+  color: var(--ink);
+  --bs-table-accent-bg: #202e42;
+}
+.dark-mode .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+.dark-mode .offcanvas,
+.dark-mode .admin-more-menu,
+.dark-mode .admin-mobile-nav {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--border);
+}
+.dark-mode .admin-more-links a {
+  color: var(--ink);
+}
+.dark-mode .admin-more-links a:hover,
+.dark-mode .admin-more-links a:focus {
+  background: var(--teal-100);
+  color: var(--ink);
+}
+.dark-mode .admin-role-card,
+.dark-mode .admin-department-card,
+.dark-mode .admin-mobile-card {
+  border-color: var(--border);
+}
+.dark-mode .admin-permission {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--ink);
+}
+.dark-mode .admin-table thead th {
+  background: #202e42;
+  color: var(--ink-soft);
+}
+.dark-mode .admin-table tbody tr:hover > * {
+  background: #202e42;
+  color: var(--ink);
+}
+.dark-mode .table-responsive {
+  background: var(--card);
+}
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  border-color: var(--border);
+}
+.dark-mode .offcanvas-backdrop {
+  background-color: #000;
+}
+.dark-mode .text-dark {
+  color: var(--ink) !important;
+}
+.dark-mode .text-black {
+  color: var(--ink) !important;
+}
+.dark-mode .badge.bg-light {
+  color: var(--ink) !important;
+}
+.dark-mode .btn-outline-brand {
+  color: #a9c4f2;
+  border-color: #5279b4;
+}
+.dark-mode .btn-outline-brand:hover {
+  background: var(--teal-700);
+  color: #fff;
+}
+.theme-switch-indicator {
+  width: 30px;
+  height: 17px;
+  border-radius: 20px;
+  background: var(--gray-bg);
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--border);
+}
+.theme-switch-indicator:after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  top: 2px;
+  left: 3px;
+  border-radius: 50%;
+  background: var(--teal-700);
+  transition: 0.2s;
+}
+.dark-mode .theme-switch-indicator:after {
+  left: 14px;
+}
+.topbar-notifications {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+}
+.topbar-notifications-mobile {
+  display: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+}
+.notification-dropdown {
+  width: min(360px, calc(100vw - 1rem));
+  max-height: 430px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.notification-dropdown .dropdown-item {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.mobile-login-options {
+  display: none;
+}
+.auth-form-centered {
+  align-items: center !important;
+  justify-content: center !important;
+}
+.auth-form-centered > div {
+  text-align: left;
+}
+.reset-password-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+.reset-password-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.35rem;
+}
+.reset-password-heading h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+}
+.reset-password-heading p {
+  font-size: 0.78rem;
+  margin: 0.2rem 0 0;
+}
+.reset-password-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 12px;
+  background: var(--teal-100);
+  color: var(--teal-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+.auth-password-group .input-group-text {
+  background: var(--card);
+  color: var(--ink-soft);
+  border-color: var(--border);
+}
+.auth-password-group .form-control {
+  border-color: var(--border);
+}
+.auth-password-group .password-toggle {
+  cursor: pointer;
+}
+.reset-password-submit {
+  min-height: 44px;
+  font-weight: 700;
+}
+.notification-page .panel-body {
+  padding: 0;
+}
+.notification-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  transition: 0.15s;
+  background: var(--card);
+}
+.notification-row-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.notification-row-link-form {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+.notification-row-link:focus-visible {
+  outline: 2px solid var(--teal-600);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.notification-read-form {
+  margin: 0;
+  flex-shrink: 0;
+}
+.notification-row:last-child {
+  border-bottom: 0;
+}
+.notification-row:hover {
+  background: var(--teal-100);
+}
+.notification-row.unread {
+  background: rgba(40, 100, 206, 0.07);
+}
+.notification-icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 12px;
+  background: var(--teal-100);
+  color: var(--teal-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notification-content {
+  min-width: 0;
+  flex: 1;
+}
+.notification-content .fw-semibold {
+  font-size: 0.9rem;
+}
+.notification-time {
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  margin-top: 0.25rem;
+}
+.notification-arrow {
+  color: var(--ink-soft);
+}
+@media (max-width: 991.98px) {
+  /* El menú hamburguesa deja de formar parte del topbar */
+  #sidebarToggle {
+    display: none !important;
+  }
+  .topbar {
+    padding: 0.7rem 0.9rem;
+  }
+  .auth-form-centered {
+    min-height: calc(100svh - 2rem);
+  }
+  .auth-form-centered > div {
+    width: min(100%, 520px) !important;
+  }
+}
+@media (max-width: 767.98px) {
+  .topbar-notifications-desktop {
+    display: none;
+  }
+  .topbar-notifications-mobile {
+    display: inline-flex;
+  }
+  .auth-form-centered {
+    width: calc(100% - 1rem) !important;
+    margin: 0.5rem auto !important;
+    padding: 1.1rem 0.9rem !important;
+  }
+  .auth-form-centered h2 {
+    font-size: 1.12rem !important;
+  }
+  .auth-form-centered > div > p {
+    font-size: 0.78rem !important;
+  }
+  .auth-form-centered .form-label {
+    font-size: 0.72rem !important;
+  }
+  .auth-form-centered .form-control,
+  .auth-form-centered .input-group-text {
+    min-height: 42px !important;
+    font-size: 0.8rem !important;
+  }
+  .auth-form-centered .btn {
+    min-height: 42px !important;
+    font-size: 0.78rem !important;
+  }
+  .auth-form-centered .small {
+    font-size: 0.7rem !important;
+  }
+  .register-form-side {
+    min-height: auto !important;
+  }
+  .register-form-side .form-control,
+  .register-form-side .input-group-text {
+    min-height: 38px !important;
+    font-size: 0.72rem !important;
+  }
+  .register-form-side .form-label {
+    font-size: 0.65rem !important;
+  }
+  .mobile-login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .mobile-login-options .form-check-label {
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .mobile-login-options .form-check-input {
+    margin: 0;
+    width: 17px;
+    height: 17px;
+  }
+  .biometric-login {
+    font-size: 0.66rem !important;
+    min-height: 34px !important;
+    padding: 0.3rem 0.55rem !important;
+  }
+  .auth-footer {
+    font-size: 0.65rem !important;
+  }
+  .secretaria-dashboard-hojas-list .ticket-card {
+    margin-bottom: 0.65rem;
+  }
+  .notification-row {
+    padding: 0.85rem 0.8rem;
+    gap: 0.65rem;
+  }
+  .notification-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+  .notification-content .fw-semibold {
+    font-size: 0.88rem;
+  }
+  .notification-content .small {
+    font-size: 0.75rem !important;
+    line-height: 1.3;
+  }
+  .notification-time {
+    font-size: 0.68rem;
+  }
+}
+
+/* La hoja exportada conserva el mismo formato carta en cualquier pantalla. */
+@page {
+  size: Letter;
+  margin: 0.35in;
+}
+
+@media print {
+  html,
+  body {
+    width: 8.5in !important;
+    min-width: 8.5in !important;
+    background: #fff !important;
+  }
+
+  .print-sheet {
+    box-sizing: border-box !important;
+    width: 7.8in !important;
+    max-width: 7.8in !important;
+    min-height: 10.3in !important;
+    margin: 0 !important;
+    padding: 0.35in !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    font-size: 1rem !important;
+  }
+
+  .print-sheet .ps-head {
+    display: flex !important;
+    gap: 0.65rem !important;
+    padding-bottom: 0.55rem !important;
+    margin-bottom: 0.7rem !important;
+  }
+
+  .print-sheet .ps-head img {
+    height: 36px !important;
+  }
+
+  .print-sheet .ps-head h1 {
+    font-size: 1.1rem !important;
+  }
+
+  .print-sheet .ps-head .ps-sub,
+  .print-sheet .ps-label {
+    font-size: 0.7rem !important;
+  }
+
+  .print-sheet .ps-head > .ms-auto {
+    grid-column: auto !important;
+    margin-left: auto !important;
+    text-align: right !important;
+  }
+
+  .print-sheet .ps-head .ps-value {
+    font-size: 1.1rem !important;
+  }
+
+  .print-sheet .ps-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.45rem 1rem !important;
+    margin-bottom: 0.65rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  .print-sheet .ps-check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.2rem 0.7rem !important;
+    margin: 0.35rem 0 0.7rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .print-sheet .ps-evidencia {
+    padding: 0.55rem !important;
+  }
+
+  .print-sheet .ps-evidencia img {
+    max-height: 210px !important;
+  }
+}
+
+/* =========================================================
+   PDF / IMPRESIÓN V4 — NO HEREDA LA ESCALA MÓVIL
+   La hoja debe conservar tamaño de documento aun cuando
+   window.print() sea ejecutado desde un teléfono.
+   ========================================================= */
+@page {
+  size: Letter portrait;
+  margin: 0.3in;
+}
+
+@media print {
+  html,
+  body {
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    font-size: 12pt !important;
+  }
+
+  .worksheet-page,
+  .worksheet-page.content {
+    width: auto !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 12pt !important;
+  }
+
+  .worksheet-page .print-sheet {
+    box-sizing: border-box !important;
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0.18in !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    font-size: 11pt !important;
+    line-height: 1.22 !important;
+  }
+
+  .worksheet-page .print-sheet .ps-head {
+    display: flex !important;
+    grid-template-columns: none !important;
+    align-items: center !important;
+    gap: 0.55in !important;
+    padding-bottom: 0.12in !important;
+    margin-bottom: 0.16in !important;
+  }
+
+  .worksheet-page .print-sheet .ps-head img {
+    height: 34px !important;
+    max-height: 34px !important;
+    width: auto !important;
+  }
+
+  .worksheet-page .print-sheet .ps-head h1 {
+    font-size: 14pt !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
+  }
+
+  .worksheet-page .print-sheet .ps-head .ps-sub {
+    font-size: 8pt !important;
+    line-height: 1.15 !important;
+  }
+
+  .worksheet-page .print-sheet .ps-head > .ms-auto {
+    margin-left: auto !important;
+    grid-column: auto !important;
+    text-align: right !important;
+  }
+
+  .worksheet-page .print-sheet .ps-head .ps-label,
+  .worksheet-page .print-sheet .ps-label {
+    font-size: 7.5pt !important;
+    line-height: 1.15 !important;
+  }
+
+  .worksheet-page .print-sheet .ps-head .ps-value,
+  .worksheet-page .print-sheet .ps-value {
+    font-size: 10pt !important;
+    line-height: 1.2 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .worksheet-page .print-sheet > p.fw-bold.small {
+    font-size: 8.5pt !important;
+    line-height: 1.15 !important;
+    margin-top: 0.12in !important;
+    margin-bottom: 0.08in !important;
+  }
+
+  .worksheet-page .print-sheet .ps-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 0.12in 0.35in !important;
+    margin-bottom: 0.12in !important;
+    font-size: 10pt !important;
+  }
+
+  .worksheet-page .print-sheet .ps-check-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 0.035in 0.3in !important;
+    margin: 0.05in 0 0.13in !important;
+    padding: 0 !important;
+    font-size: 9pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .worksheet-page .print-sheet .ps-check-grid li {
+    font-size: 9pt !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .worksheet-page .print-sheet .ps-firma-box {
+    min-height: 72px !important;
+    max-height: 82px !important;
+    padding: 0.08in !important;
+    border-radius: 7px !important;
+  }
+
+  .worksheet-page .print-sheet .ps-firma-box img {
+    max-height: 62px !important;
+    max-width: 100% !important;
+  }
+
+  .worksheet-page .print-sheet .ps-evidencia {
+    padding: 0.08in !important;
+    margin-bottom: 0.12in !important;
+  }
+
+  .worksheet-page .print-sheet .ps-evidencia img {
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    max-height: 180px !important;
+    margin: 0 auto !important;
+  }
+
+  .worksheet-page .print-sheet .mb-3 {
+    margin-bottom: 0.12in !important;
+  }
+
+  .worksheet-page .print-sheet p:not(.fw-bold) {
+    font-size: 10pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .worksheet-page .no-print,
+  .no-print {
+    display: none !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .worksheet-page .print-sheet,
+  .worksheet-page .print-sheet * {
+    visibility: visible !important;
+  }
+}
+
+/* Refuerzo final: reglas directas para la hoja, independientemente
+   de las clases responsive que tenga el contenedor padre. */
+@media print {
+  .print-sheet {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0.18in !important;
+    margin: 0 !important;
+    font-size: 11pt !important;
+    line-height: 1.22 !important;
+    overflow: visible !important;
+  }
+  .print-sheet .ps-head {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.55in !important;
+  }
+  .print-sheet .ps-head img {
+    height: 34px !important;
+    max-height: 34px !important;
+  }
+  .print-sheet .ps-head h1 {
+    font-size: 14pt !important;
+    line-height: 1.1 !important;
+  }
+  .print-sheet .ps-head .ps-sub {
+    font-size: 8pt !important;
+  }
+  .print-sheet .ps-label {
+    font-size: 7.5pt !important;
+  }
+  .print-sheet .ps-value {
+    font-size: 10pt !important;
+    line-height: 1.2 !important;
+  }
+  .print-sheet .ps-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.12in 0.35in !important;
+    margin-bottom: 0.12in !important;
+    font-size: 10pt !important;
+  }
+  .print-sheet .ps-check-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.035in 0.3in !important;
+    margin: 0.05in 0 0.13in !important;
+    font-size: 9pt !important;
+  }
+  .print-sheet .ps-check-grid li {
+    font-size: 9pt !important;
+    line-height: 1.2 !important;
+  }
+  .print-sheet .ps-firma-box {
+    min-height: 72px !important;
+    max-height: 82px !important;
+  }
+  .print-sheet .ps-firma-box img {
+    max-height: 62px !important;
+  }
+  .print-sheet .ps-evidencia {
+    padding: 0.08in !important;
+  }
+  .print-sheet .ps-evidencia img {
+    max-height: 180px !important;
+  }
+  .print-sheet > p.fw-bold.small {
+    font-size: 8.5pt !important;
+    margin-top: 0.12in !important;
+    margin-bottom: 0.08in !important;
+  }
+  .print-sheet p:not(.fw-bold) {
+    font-size: 10pt !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* =========================================================
+   CORRECCION PDF V5 — una sola pagina
+   Evita que el layout de la aplicacion reserve una segunda
+   pagina en impresion/PDF.
+   ========================================================= */
+@media print {
+  @page {
+    size: Letter portrait;
+    margin: 0.3in;
+  }
+
+  html,
+  body {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .app-shell {
+    display: block !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .sidebar,
+  .sidebar-overlay,
+  .topbar,
+  .bottom-nav,
+  .no-print {
+    display: none !important;
+  }
+
+  .main {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .content.worksheet-page {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: none !important;
+    overflow: visible !important;
+    break-after: avoid-page !important;
+    page-break-after: avoid !important;
+  }
+
+  .worksheet-page .print-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0.12in !important;
+    overflow: visible !important;
+    break-before: avoid-page !important;
+    break-after: avoid-page !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .worksheet-page .print-sheet * {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* FIX DEFINITIVO — CONFORMIDAD EN TELÉFONO
+   En móvil el especialista debe quedar debajo de TODO el bloque
+   de usuario atendido, incluyendo firma/adjunto y área de firma. */
+@media screen and (max-width: 767.98px) {
+  .worksheet-form-page .conformidad-section > .row {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .worksheet-form-page .conformidad-section > .row > .conformidad-usuario,
+  .worksheet-form-page .conformidad-section > .row > .especialista-tecnico {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .worksheet-form-page .conformidad-section > .row > .conformidad-usuario {
+    order: 1 !important;
+  }
+
+  .worksheet-form-page .conformidad-section > .row > .especialista-tecnico {
+    order: 2 !important;
+    margin-top: 1rem !important;
+  }
+
+  .worksheet-form-page
+    .conformidad-section
+    .especialista-tecnico
+    .form-control {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .worksheet-form-page .conformidad-section .nav-pills {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+    overflow: visible !important;
+  }
+
+  .worksheet-form-page .conformidad-section .nav-pills .nav-item {
+    max-width: 100% !important;
+  }
+}
+
+/* ===== Paginación de listados (a partir de 15 registros) ===== */
+.paginacion-listado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+.card-panel > .panel-body > .paginacion-listado,
+.panel-body > .paginacion-listado:only-child {
+  border-top: 0;
+  padding: 0;
+}
+.paginacion-info {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+.paginacion-listado .pagination {
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+.paginacion-listado .page-link {
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--teal-800);
+  font-weight: 600;
+  min-width: 34px;
+  text-align: center;
+}
+.paginacion-listado .page-item.active .page-link {
+  background: var(--teal-700);
+  border-color: var(--teal-700);
+  color: #fff;
+}
+.paginacion-listado .page-item.disabled .page-link {
+  color: #9ca3af;
+  background: transparent;
+}
+.paginacion-listado .page-link:hover {
+  background: rgba(40, 100, 206, 0.08);
+}
+@media (max-width: 575.98px) {
+  .paginacion-listado {
+    justify-content: center;
+    text-align: center;
+  }
+}

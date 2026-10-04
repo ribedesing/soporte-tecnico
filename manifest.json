@@ -1,0 +1,12 @@
+{
+  "name": "Sistema de Soporte Técnico",
+  "short_name": "Soporte Técnico",
+  "start_url": "./index.php",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F7F6",
+  "theme_color": "#0A3F3A",
+  "icons": [
+    { "src": "assets/img/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
