@@ -2,24 +2,8 @@
 
 Plataforma web de gestión de **tickets y hojas de servicio técnico** para una institución pública. Centraliza la solicitud de soporte por parte de los departamentos, la atención en campo por analistas y la supervisión desde secretaría y administración.
 
-> **Demo en vivo:** [URL_DE_LA_DEMO](URL_DE_LA_DEMO) &nbsp;·&nbsp; entorno de demostración con **datos 100 % ficticios**.
+> **Demo en vivo:** [[URL_DE_LA_DEMO](URL_DE_LA_DEMO)](https://soporte-de-tickets.rf.gd) &nbsp;·&nbsp; entorno de demostración con **datos 100 % ficticios**.
 > El código se publica únicamente con fines de evaluación (ver [LICENSE](LICENSE)).
-
-<!-- Reemplaza URL_DE_LA_DEMO por el enlace real cuando despliegues la demo. -->
-
-## Capturas
-
-<!-- Guarda las imágenes en docs/screenshots/ con estos nombres (o cambia las rutas). -->
-
-| Inicio de sesión | Panel del departamento |
-|---|---|
-| ![Login](docs/screenshots/01-login.png) | ![Panel departamento](docs/screenshots/02-departamento.png) |
-
-| Hoja de servicio del analista (móvil) | Panel de administración |
-|---|---|
-| ![Hoja de servicio](docs/screenshots/03-hoja-servicio.png) | ![Panel admin](docs/screenshots/04-admin.png) |
-
-<!-- Opcional: un GIF corto del flujo ticket → analista → hoja de servicio → PDF. -->
 
 ## Probar la demo
 
